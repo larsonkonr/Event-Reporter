@@ -1,7 +1,11 @@
 class Queue
-  attr_reader :count
+  attr_reader :queue
 
   def initialize
-    @count = 0
+    @queue = []
+  end
+
+  def count
+    queue.count
   end
 end

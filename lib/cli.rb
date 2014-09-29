@@ -1,9 +1,10 @@
 class CLI
-  attr_reader :command
+  attr_reader :command, :queue
 
   def initialize(stdout)
     @stdout = stdout
     @command = ""
+    @queue = Queue.new
   end
 
   def start
@@ -16,6 +17,8 @@ class CLI
     when command == "help"
       puts "Available commands:"
       puts "load\nqueue count\nqueue clear\nqueue print\nqueue print by <attribute>\nqueue save to <filename.csv>\nfind <attribute> <criteria>"
+    when command == "queue count"
+      puts queue.count
     end
   end
 end
