@@ -18,11 +18,11 @@ class Repository
   end
 
   def find_by_first_name(name)
-    entries.select { |entry| entry.first_Name == name }
+    entries.select { |entry| entry.first_name == name }
   end
 
   def find_by_last_name(name)
-    entries.select { |entry| entry.last_Name == name }
+    entries.select { |entry| entry.last_name == name }
   end
 
   def find_by_first_and_last_name(first, last)
@@ -33,10 +33,24 @@ class Repository
     entries.select {|entry| entry.phone_number == number}
   end
 
-  # zip
-  # city
-  # state
-  # email
-  # address
+  def find_by_zip(zip)
+    entries.select { |entry| entry.zip == zip }
+  end
+
+  def find_by_city(city)
+    entries.select { |entry| entry.city == city}
+  end
+
+  def find_by_state(state)
+    entries.select { |entry| entry.state == state }
+  end
+
+  def find_by_email(email)
+    entries.select { |entry| entry.email == email }
+  end
+
+  def find_by_address(address)
+    entries.select { |entry| entry.address == address }
+  end
 
 end
