@@ -3,6 +3,8 @@ require 'minitest/autorun'
 require 'minitest/pride'
 require 'stringio'
 require_relative '../lib/cli'
+require_relative '../lib/entry_repository'
+require_relative '../lib/entry'
 
 class CLITest < Minitest::Test
   attr_reader :cli
@@ -17,17 +19,14 @@ class CLITest < Minitest::Test
   end
 
   def test_command_starts_out_empty
-    skip
     assert_equal "", cli.command
   end
 
   def test_cli_can_start
-    skip
     assert cli.respond_to?(:start)
   end
 
   def test_can_quit
-    skip
     assert cli.respond_to?(:quit?)
   end
 end

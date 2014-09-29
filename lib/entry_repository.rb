@@ -7,8 +7,8 @@ class EntryRepository
   def self.load_entries(directory, filename = 'event_attendees.csv')
     file = File.join(directory, filename)
     contents = CSV.open file, headers: true, header_converters: :symbol
-    puts "Loaded #{file}"
     rows = contents.collect { |row| Entry.new(row) }
+    new(rows)
   end
 
   def initialize(entries)
