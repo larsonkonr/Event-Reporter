@@ -1,4 +1,3 @@
-require 'csv'
 require 'sunlight/congress'
 require 'erb'
 
@@ -57,9 +56,6 @@ def save_thank_you_letters(id, form_letter)
   end
 end
 
-puts "EventManager Initialized!"
-
-contents = CSV.open "event_attendees.csv", headers: true, header_converters: :symbol
 template_letter = File.read "form_letter.erb"
 erb_template = ERB.new template_letter
 
