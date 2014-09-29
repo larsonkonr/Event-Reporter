@@ -1,5 +1,4 @@
 require 'csv'
-require_relative 'entry'
 
 class Repository
 
@@ -7,8 +6,8 @@ class Repository
 
   def self.load_entries(directory)
     file = File.join(directory, 'event_attendees.csv')
-    data = CSV.open(file, headers: true, header_converters: :symbol)
-    rows = data.map do |row|
+    contents = CSV.open "data/event_attendees.csv", headers: true, header_converters: :symbol
+    rows = contents.map do |row|
       Entry.new(row)
     end
     new(rows)
@@ -34,10 +33,10 @@ class Repository
     entries.select {|entry| entry.phone_number == number}
   end
 
-  zip
-  city
-  state
-  email
-  address
+  # zip
+  # city
+  # state
+  # email
+  # address
 
 end

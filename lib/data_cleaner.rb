@@ -37,10 +37,10 @@ def incorrect_prefix?(phone_number)
   phone_number.length == 11 && phone_number[0] != "1"
 end
 
-contents.each do |row|
-  id = row[0]
-  name = row[:first_name]
-  phone_number = clean_phone_number(row[:homephone])
-  zipcode = clean_zipcode(row[:zipcode])
-  puts "#{name} #{zipcode} #{phone_number}"
-end
+# contents.each do |row|
+#   id = row[0]
+#   name = row[:first_name]
+#   phone_number = clean_phone_number(row[:homephone])
+#   zipcode = clean_zipcode(row[:zipcode])
+#   puts "#{name} #{zipcode} #{phone_number}"
+# end
