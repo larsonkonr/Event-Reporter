@@ -7,6 +7,7 @@ class Repository
   def self.load_entries(directory, filename = 'event_attendees.csv')
     file = File.join(directory, filename)
     contents = CSV.open file, headers: true, header_converters: :symbol
+    puts "Loaded #{file}"
     # contents.each do |row|
     #   name = row[2]
     #   puts name
