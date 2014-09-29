@@ -1,6 +1,6 @@
 require 'csv'
 
-class Repository
+class EntryRepository
 
   attr_reader :entries
 
@@ -8,10 +8,7 @@ class Repository
     file = File.join(directory, filename)
     contents = CSV.open file, headers: true, header_converters: :symbol
     puts "Loaded #{file}"
-    # contents.each do |row|
-    #   name = row[2]
-    #   puts name
-    # end
+    rows = contents.collect { |row| Entry.new(row) }
   end
 
   def initialize(entries)
@@ -34,8 +31,8 @@ class Repository
     entries.select {|entry| entry.phone_number == number}
   end
 
-  def find_by_zip(zip)
-    entries.select { |entry| entry.zip == zip }
+  def find_by_zipcode(zipcode)
+    entries.select { |entry| entry.zipcode == zipcode }
   end
 
   def find_by_city(city)

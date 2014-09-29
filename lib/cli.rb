@@ -12,7 +12,7 @@ class CLI
     @command = gets.strip
     case
     when command == "load"
-      Repository.load_entries("./data")
+      EntryRepository.load_entries("./data")
     when command == "help"
       puts "Available commands:"
       puts "load\nqueue count\nqueue clear\nqueue print\nqueue print by <attribute>\nqueue save to <filename.csv>\nfind <attribute> <criteria>"
