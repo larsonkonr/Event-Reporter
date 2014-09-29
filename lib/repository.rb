@@ -4,13 +4,13 @@ class Repository
 
   attr_reader :entries
 
-  def self.load_entries(directory)
-    file = File.join(directory, 'event_attendees.csv')
-    contents = CSV.open "data/event_attendees.csv", headers: true, header_converters: :symbol
-    rows = contents.map do |row|
-      Entry.new(row)
-    end
-    new(rows)
+  def self.load_entries(directory, filename = 'event_attendees.csv')
+    file = File.join(directory, filename)
+    contents = CSV.open file, headers: true, header_converters: :symbol
+    # contents.each do |row|
+    #   name = row[2]
+    #   puts name
+    # end
   end
 
   def initialize(entries)
