@@ -1,26 +1,25 @@
 class CLI
-  attr_reader :command, :queue, :repository
+  attr_reader :command, :queue, :repository, :printer
 
   def initialize(stdout)
     @stdout = stdout
     @command = ""
     @queue = Queue.new
     @repository = EntryRepository.load_entries("./data")
+    @printer = Printer.new
   end
 
   def start
-    puts "EventReporter Initialized!"
-    puts "Enter your command:"
+    printer.welcome
     until quit?
     @command = gets.strip
     case
     when command == "load"
       repository
     when command == "help"
-      puts "Available commands:"
-      puts "load\nqueue count\nqueue clear\nqueue print\nqueue print by <attribute>\nqueue save to <filename.csv>\nfind <attribute> <criteria>"
+      printer.help
     when command == "queue count"
-      puts queue.count
+      printer.queue_count(queue.count)
     when command == "queue print"
       queue.print_queue
     when command == "queue clear"
@@ -34,13 +33,11 @@ class CLI
         results.each do |result|
           queue.add_to_queue(result.name)
         end
-        puts results.count
       when attribute == "last_name"
         results = repository.find_by_last_name(criteria)
         results.each do |result|
           puts result.name
         end
-        puts results.count
       end
     when attribute == ""
     end

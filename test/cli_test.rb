@@ -5,6 +5,7 @@ require 'stringio'
 require_relative '../lib/cli'
 require_relative '../lib/entry_repository'
 require_relative '../lib/entry'
+require_relative '../lib/printer'
 
 class CLITest < Minitest::Test
   attr_reader :cli
