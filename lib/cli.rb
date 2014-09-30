@@ -6,6 +6,7 @@ class CLI
     @command = ""
     @queue = EntryQueue.new
     @printer = Printer.new
+    @repository = EntryRepository.new([])
   end
 
   def start
@@ -48,6 +49,12 @@ class CLI
       lookup_first_name(criteria)
     when attribute == "last_name"
       lookup_last_name(criteria)
+    when attribute == "city"
+      lookup_city(criteria)
+    when attribute == "state"
+      lookup_state(criteria)
+    when attribute == "zipcode"
+      lookup_zipcode(criteria)
     end
   end
 
@@ -60,6 +67,27 @@ class CLI
 
   def lookup_last_name(criteria)
     results = repository.find_by_last_name(criteria)
+    results.each do |result|
+      queue.add_to_queue(result.name)
+    end
+  end
+
+  def lookup_city(criteria)
+    results = repository.find_by_city(criteria)
+    results.each do |result|
+      queue.add_to_queue(result.name)
+    end
+  end
+
+  def lookup_state(criteria)
+    results = repository.find_by_state(criteria)
+    results.each do |result|
+      queue.add_to_queue(result.name)
+    end
+  end
+
+  def lookup_zipcode(criteria)
+    results = repository.find_by_zipcode(criteria)
     results.each do |result|
       queue.add_to_queue(result.name)
     end

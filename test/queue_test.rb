@@ -1,9 +1,9 @@
 gem 'minitest', '~> 5.2'
 require 'minitest/autorun'
 require 'minitest/pride'
-require_relative '../lib/queue'
+require_relative '../lib/entry_queue'
 
-class QueueTest < Minitest::Test
+class EntryQueueTest < Minitest::Test
   attr_reader :queue, :data
 
   def setup
@@ -16,7 +16,7 @@ class QueueTest < Minitest::Test
              city: "Denver",
              state: "CO",
              zipcode: "80203" }
-    @queue = Queue.new
+    @queue = EntryQueue.new
   end
 
   def test_queue_starts_out_empty
