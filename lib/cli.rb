@@ -37,7 +37,7 @@ class CLI
       queue.clear
     when input.command =~ /(find)/
       # find_by_attribute_and_criteria
-    _, attribute, criteria = @input.command.split(" ")
+      _, attribute, criteria = @input.command.split(" ")
       find(attribute, criteria)
     end
   end

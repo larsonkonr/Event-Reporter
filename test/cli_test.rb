@@ -10,39 +10,28 @@ class CLITest < Minitest::Test
     @repository = EntryRepository.load_entries("./test/fixtures/small_event_attendees.csv")
   end
 
-  # def test_process_initial_commands
-  #   input.stub :command, "load" do
-  #     cli.process_initial_commands
-  #     assert_equal EntryRepository.load_entries("./data"), cli.repository
-  #   end
-  #
-  # end
-
   def test_lookup_first_name
     attribute = "first_name"
-    criteria = "Allison"
-    unexpected_criteria = "Viki"
+    criteria = "allison"
+    unexpected_criteria = "viki"
     cli.stub :repository, @repository do
-      assert_equal [criteria], cli.find(attribute, criteria)
-      #refute_equal [unexpected_criteria], cli.lookup_first_name(unexpected_criteria).map(&:first_name)
+      assert_equal criteria, cli.find(attribute, criteria).first.first_name
+      assert_equal [], cli.find(attribute, unexpected_criteria)
     end
   end
 
   def test_lookup_last_name
-    criteria = "Davis"
-    unexpected_criteria = "Harrod"
+    attribute = "last_name"
+    criteria = "davis"
+    unexpected_criteria = "harrod"
     cli.stub :repository, @repository do
-      assert_equal [criteria], cli.lookup_last_name(criteria).map(&:last_name)
-      refute_equal [unexpected_criteria], cli.lookup_last_name(unexpected_criteria).map(&:last_name)
+      assert_equal criteria, cli.find(attribute, criteria).first.last_name
+      assert_equal [], cli.find(attribute, unexpected_criteria)
     end
   end
 
   def test_has_input
     assert cli.respond_to?(:input)
-  end
-
-  def test_command_starts_out_empty
-    assert_equal "", cli.command
   end
 
   def test_cli_can_start
@@ -52,4 +41,17 @@ class CLITest < Minitest::Test
   def test_can_quit
     assert cli.respond_to?(:quit?)
   end
+
+  # TO DO - move to input test
+  # def test_command_starts_out_empty
+  #   assert_equal "", cli.input.command
+  # end
+
+  # TO DO - possibly delete, possibly re-write.
+  # def test_load
+  #   input.stub :command, "load" do
+  #     cli.process_initial_commands
+  #     assert_equal EntryRepository.load_entries("./test/fixtures"), cli.repository
+  #   end
+  # end
 end
