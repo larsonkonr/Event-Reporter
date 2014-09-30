@@ -7,18 +7,21 @@ require_relative '../lib/entry_repository'
 require_relative '../lib/entry'
 require_relative '../lib/printer'
 require_relative '../lib/entry_queue'
+require_relative '../lib/input'
 
 class CLITest < Minitest::Test
-  attr_reader :cli
+  attr_reader :cli, :input
 
   def setup
     fake_stdout = StringIO.new
     @cli = CLI.new(fake_stdout)
+
+    @input = InputParser.new
     @repository = EntryRepository.load_entries("./test/fixtures/small_event_attendees.csv")
   end
 
   def test_process_initial_commands
-    cli.stub :command, "load" do
+      input.stub :command, "load" do
       cli.process_initial_commands
       assert_equal EntryRepository.load_entries("./data"), cli.repository
     end
@@ -43,8 +46,8 @@ class CLITest < Minitest::Test
     end
   end
 
-  def test_has_a_command
-    assert cli.respond_to?(:command)
+  def test_has_input
+    assert cli.respond_to?(:input)
   end
 
   def test_command_starts_out_empty
