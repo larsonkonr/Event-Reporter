@@ -62,4 +62,8 @@ class EntryTest < Minitest::Test
   def test_zipcode
     assert_equal "80203", entry.zipcode
   end
+
+  def test_comparison
+    assert_equal
+  end
 end
