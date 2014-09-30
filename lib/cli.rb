@@ -5,7 +5,6 @@ class CLI
     @stdout = stdout
     @command = ""
     @queue = Queue.new
-    @repository = EntryRepository.load_entries("./data")
     @printer = Printer.new
   end
 
@@ -19,7 +18,10 @@ class CLI
     @command = gets.strip
       case
       when command == "load"
-        repository
+        @repository = EntryRepository.load_entries("./data")
+      when command =~ /(load)/ && command.length > 4
+        command, filename = @command.split(" ")
+        @repository = EntryRepository.load_entries("./data", filename)
       when command == "help"
         printer.help
       when command == "queue count"
