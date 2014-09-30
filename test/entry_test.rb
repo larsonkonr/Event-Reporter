@@ -1,10 +1,4 @@
-require 'simplecov'
-SimpleCov.start
-gem 'minitest', '~> 5.2'
-require 'minitest/autorun'
-require 'minitest/pride'
-require_relative '../lib/entry'
-require_relative '../lib/data_cleaner'
+require_relative 'test_helper'
 
 class EntryTest < Minitest::Test
   attr_reader :entry
@@ -63,7 +57,7 @@ class EntryTest < Minitest::Test
     assert_equal "80203", entry.zipcode
   end
 
-  def test_comparison
-    assert_equal
-  end
+  # def test_comparison
+  #   assert_equal
+  # end
 end

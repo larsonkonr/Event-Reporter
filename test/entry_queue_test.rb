@@ -1,9 +1,4 @@
-require 'simplecov'
-SimpleCov.start
-gem 'minitest', '~> 5.2'
-require 'minitest/autorun'
-require 'minitest/pride'
-require_relative '../lib/entry_queue'
+require_relative 'test_helper'
 
 class EntryQueueTest < Minitest::Test
   attr_reader :queue, :entries
