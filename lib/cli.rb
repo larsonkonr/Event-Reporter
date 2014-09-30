@@ -17,20 +17,20 @@ class CLI
     until quit?
     @command = gets.strip
       case
-      when command == "load"
+      when @command == "load"
         @repository = EntryRepository.load_entries("./data")
-      when command =~ /(load)/ && command.length > 4
-        command, filename = @command.split(" ")
+      when @command =~ /(load)/ && command.length > 4
+        _, filename = @command.split(" ")
         @repository = EntryRepository.load_entries("./data", filename)
-      when command == "help"
+      when @command == "help"
         printer.help
-      when command == "queue count"
+      when @command == "queue count"
         printer.queue_count(queue.count)
-      when command == "queue print"
+      when @command == "queue print"
         queue.print_queue
-      when command == "queue clear"
+      when @command == "queue clear"
         queue.clear
-      when command =~ /(find)/
+      when @command =~ /(find)/
         find_by_attribute_and_criteria
       end
     end
@@ -38,7 +38,7 @@ class CLI
 
   def find_by_attribute_and_criteria
     queue.clear
-    command, attribute, criteria = @command.split(" ")
+    _, attribute, criteria = @command.split(" ")
     case
     when attribute == "first_name"
       lookup_first_name(criteria)
@@ -64,4 +64,7 @@ class CLI
   def quit?
     command == "q" || command == "quit"
   end
+
+  private
+  attr_writer :command
 end
