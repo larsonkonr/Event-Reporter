@@ -1,4 +1,4 @@
-class Queue
+class EntryQueue
   attr_reader :queue
 
   def initialize

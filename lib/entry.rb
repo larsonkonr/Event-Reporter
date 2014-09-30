@@ -24,4 +24,16 @@ class Entry
   def name
     "#{@first_name} #{@last_name}"
   end
+
+  def ==(rhs)
+    regdate == rhs.regdate
+    first_name == rhs.first_name
+    last_name == rhs.last_name
+    email == rhs.email
+    phone_number == rhs.phone_number
+    address == rhs.address
+    city == rhs.city
+    state == rhs.state
+    zipcode == rhs.zipcode
+  end
 end

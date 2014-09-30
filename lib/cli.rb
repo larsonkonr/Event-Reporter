@@ -4,35 +4,39 @@ class CLI
   def initialize(stdout)
     @stdout = stdout
     @command = ""
-    @queue = Queue.new
+    @queue = EntryQueue.new
     @printer = Printer.new
   end
 
   def start
     printer.welcome
-    process_initial_commands
+    until quit?
+      get_input
+      process_initial_commands
+    end
+  end
+
+  def get_input
+    @command = gets.strip
   end
 
   def process_initial_commands
-    until quit?
-    @command = gets.strip
-      case
-      when @command == "load"
-        @repository = EntryRepository.load_entries("./data")
-      when @command =~ /(load)/ && command.length > 4
-        _, filename = @command.split(" ")
-        @repository = EntryRepository.load_entries("./data", filename)
-      when @command == "help"
-        printer.help
-      when @command == "queue count"
-        printer.queue_count(queue.count)
-      when @command == "queue print"
-        queue.print_queue
-      when @command == "queue clear"
-        queue.clear
-      when @command =~ /(find)/
-        find_by_attribute_and_criteria
-      end
+    case
+    when command == "load"
+      @repository = EntryRepository.load_entries("./data")
+    when command =~ /(load)/ && command.length > 4
+      _, filename = command.split(" ")
+      @repository = EntryRepository.load_entries(filename)
+    when command == "help"
+      printer.help
+    when command == "queue count"
+      printer.queue_count(queue.count)
+    when command == "queue print"
+      queue.print_queue
+    when command == "queue clear"
+      queue.clear
+    when command =~ /(find)/
+      find_by_attribute_and_criteria
     end
   end
 
