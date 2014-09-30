@@ -13,11 +13,13 @@ class EntryQueue
     @queue = []
   end
 
-  def add_to_queue(entry)
-    @queue << entry
+  def print_queue
+    queue.each do |entry|
+      puts entry.name
+    end
   end
 
-  def print_queue
-    puts queue
+  def add(entries)
+    @queue += entries
   end
 end

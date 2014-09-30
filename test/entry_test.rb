@@ -2,6 +2,7 @@ gem 'minitest', '~> 5.2'
 require 'minitest/autorun'
 require 'minitest/pride'
 require_relative '../lib/entry'
+require_relative '../lib/data_cleaner'
 
 class EntryTest < Minitest::Test
   attr_reader :entry
@@ -21,7 +22,7 @@ class EntryTest < Minitest::Test
   end
 
   def test_name
-    assert_equal "Alice Steve", entry.name
+    assert_equal "alice steve", entry.name
   end
 
   def test_regdate
@@ -29,11 +30,11 @@ class EntryTest < Minitest::Test
   end
 
   def test_first_name
-    assert_equal "Alice", entry.first_name
+    assert_equal "alice", entry.first_name
   end
 
   def test_last_name
-    assert_equal "Steve", entry.last_name
+    assert_equal "steve", entry.last_name
   end
 
   def test_email
@@ -41,7 +42,7 @@ class EntryTest < Minitest::Test
   end
 
   def test_phone_number
-    assert_equal "111.111.1111", entry.phone_number
+    assert_equal "1111111111", entry.phone_number
   end
 
   def test_address

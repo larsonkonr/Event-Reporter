@@ -6,7 +6,7 @@ class InputParser
   end
 
   def get_input
-    @command = gets.strip
+    @command = gets.strip.downcase
   end
 
   def process_load_file_command

@@ -1,3 +1,4 @@
+require_relative 'data_cleaner'
 class Entry
   attr_reader :regdate,
               :first_name,
@@ -7,18 +8,20 @@ class Entry
               :address,
               :city,
               :state,
-              :zipcode
+              :zipcode,
+              :cleaner
 
   def initialize(data)
-    @regdate = data[:regdate]
-    @first_name = data[:first_name]
-    @last_name = data[:last_name]
-    @email = data[:email_address]
-    @phone_number = data[:homephone]
-    @address = data[:street]
-    @city = data[:city]
-    @state = data[:state]
-    @zipcode = data[:zipcode]
+    @cleaner        = DataCleaner.new
+    @regdate        = data[:regdate]
+    @first_name     = cleaner.clean_name(data[:first_name])
+    @last_name      = cleaner.clean_name(data[:last_name])
+    @email          = data[:email_address]
+    @phone_number   = cleaner.clean_phone_number(data[:homephone])
+    @address        = data[:street]
+    @city           = data[:city]
+    @state          = data[:state]
+    @zipcode        = cleaner.clean_zipcode(data[:zipcode])
   end
 
   def name

@@ -8,6 +8,7 @@ require_relative '../lib/entry'
 require_relative '../lib/printer'
 require_relative '../lib/entry_queue'
 require_relative '../lib/input'
+require_relative '../lib/data_cleaner'
 
 class CLITest < Minitest::Test
   attr_reader :cli, :input
@@ -15,25 +16,25 @@ class CLITest < Minitest::Test
   def setup
     fake_stdout = StringIO.new
     @cli = CLI.new(fake_stdout)
-
     @input = InputParser.new
     @repository = EntryRepository.load_entries("./test/fixtures/small_event_attendees.csv")
   end
 
-  def test_process_initial_commands
-      input.stub :command, "load" do
-      cli.process_initial_commands
-      assert_equal EntryRepository.load_entries("./data"), cli.repository
-    end
-
-  end
+  # def test_process_initial_commands
+  #   input.stub :command, "load" do
+  #     cli.process_initial_commands
+  #     assert_equal EntryRepository.load_entries("./data"), cli.repository
+  #   end
+  #
+  # end
 
   def test_lookup_first_name
+    attribute = "first_name"
     criteria = "Allison"
     unexpected_criteria = "Viki"
     cli.stub :repository, @repository do
-      assert_equal [criteria], cli.lookup_first_name(criteria).map(&:first_name)
-      refute_equal [unexpected_criteria], cli.lookup_first_name(unexpected_criteria).map(&:first_name)
+      assert_equal [criteria], cli.find(attribute, criteria)
+      #refute_equal [unexpected_criteria], cli.lookup_first_name(unexpected_criteria).map(&:first_name)
     end
   end
 
