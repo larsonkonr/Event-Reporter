@@ -19,6 +19,13 @@ class EntryQueue
     end
   end
 
+  def print_by(attribute)
+    queue.sort_by! do |entry|
+      entry.send(attribute.to_sym)
+    end
+    print_queue
+  end
+
   def add(entries)
     @queue += entries
   end
