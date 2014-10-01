@@ -25,7 +25,7 @@ class Entry
   end
 
   def self.headers
-    ["regdate", "first_name", "last_name", "email_address", "homephone", "street", "city", "state", "zipcode"]
+    ["RegDate", "First_Name", "Last_Name", "Email_Address", "HomePhone", "Street", "City", "State", "Zipcode"]
   end
 
   def to_a
