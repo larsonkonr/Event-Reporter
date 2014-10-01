@@ -19,7 +19,7 @@ class Entry
     @email          = data[:email_address]
     @phone_number   = cleaner.clean_phone_number(data[:homephone])
     @address        = data[:street]
-    @city           = data[:city]
+    @city           = cleaner.clean_city(data[:city])
     @state          = data[:state]
     @zipcode        = cleaner.clean_zipcode(data[:zipcode])
   end

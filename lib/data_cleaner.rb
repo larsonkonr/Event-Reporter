@@ -43,6 +43,10 @@ class DataCleaner
     name.to_s.downcase
   end
 
+  def clean_city(city)
+    city.to_s.downcase
+  end
+
   # contents.each do |row|
   #   id = row[0]
   #   name = row[:first_name]

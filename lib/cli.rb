@@ -76,7 +76,7 @@ class CLI
   end
 
   def criteria
-    results[2]
+    results[2..-1].join(" ")
   end
 
   def one_word?

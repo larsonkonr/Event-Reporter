@@ -15,7 +15,14 @@ class EntryQueue
 
   def print_queue
     queue.each do |entry|
-      puts entry.name
+      print "#{entry.first_name} "
+      print "#{entry.last_name} "
+      print "#{entry.email} "
+      print "#{entry.phone_number} "
+      print "#{entry.address} "
+      print "#{entry.city} "
+      print "#{entry.state} "
+      print "#{entry.zipcode} \n"
     end
   end
 
