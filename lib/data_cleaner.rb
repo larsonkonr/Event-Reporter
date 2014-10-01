@@ -52,14 +52,6 @@ class DataCleaner
   end
 
   def clean_state(state)
-    state.to_s
+    state.to_s#.downcase
   end
-
-  # contents.each do |row|
-  #   id = row[0]
-  #   name = row[:first_name]
-  #   phone_number = clean_phone_number(row[:homephone])
-  #   zipcode = clean_zipcode(row[:zipcode])
-  #   puts "#{name} #{zipcode} #{phone_number}"
-  # end
 end

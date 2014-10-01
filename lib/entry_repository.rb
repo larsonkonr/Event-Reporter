@@ -21,26 +21,29 @@ class EntryRepository
     new(rows)
   end
 
-  # def self.save_entries(filename)
-  #   path = "./data/#{filename}"
-  #   File.open(path, 'wb') do |row|
-  #     row.puts "some stuff"
-  #     # queue.each do |row|
-  #     #   filename << row
-  #     # end
-  #   end
-  # end
+  def self.save_entries(filename, queue)
+    path = "./data/#{filename}"
+    CSV.open(path, 'w') do |csvfile|
+      csvfile << Entry.headers
+      queue.queue.each do |entry|
+        csvfile << entry.to_a
+      end
+    end
+  end
 
   def initialize(entries)
     @entries = entries
   end
 
-  def ==(rhs)
-    entries == rhs.entries
-  end
+  # def ==(rhs)
+  #   entries == rhs.entries
+  # end
 
   def find_by(attribute, criteria)
-    entries.select {|entry| entry.send(attribute.to_sym) == criteria}
+    criteria = criteria.downcase
+    entries.select { |entry|
+      entry.send(attribute.to_sym).downcase == criteria
+    }
   end
 
 end

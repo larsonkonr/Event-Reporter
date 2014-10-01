@@ -27,7 +27,6 @@ class CLI
     when help? then printer.help
     when queue_command? then process_queue_command
     when find? then find(attribute, criteria)
-    when save? then save_file
     end
   end
 
@@ -51,20 +50,12 @@ class CLI
     @repository = EntryRepository.load_entries(results[1])
   end
 
-  def queue_save?
-    results[1] == "save"
-  end
-
-  def save_file
-    CSV.open("sample.csv", 'w') do |row|
-      row << ["row 1", "row1"]
-      row << ["row 2", "row2"]
-    end
-    # @repository = EntryRepository.save_entries(results[3])
-  end
-
   def help?
     results[0] == "help" && one_word?
+  end
+
+  def queue_save?
+    results[1] == "save"
   end
 
   def queue_count?
@@ -81,6 +72,10 @@ class CLI
 
   def queue_clear?
     queue_command? && results[1] == "clear"
+  end
+
+  def queue_save_file
+    @repository = EntryRepository.save_entries(results[3], queue)
   end
 
   def find?
@@ -109,14 +104,14 @@ class CLI
     when queue_print? then queue.print_queue
     when queue_print_by? then queue.print_by(results[3])
     when queue_clear? then queue.clear
-    when queue_save? then save_file
+    when queue_save? then queue_save_file
     end
   end
 
   def find(attribute, criteria)
     queue.clear
-    results = repository.find_by(attribute, criteria)
-    queue.add(results)
+    search_results = repository.find_by(attribute, criteria)
+    queue.add(search_results)
   end
 
   def quit?

@@ -24,19 +24,23 @@ class Entry
     @zipcode        = cleaner.clean_zipcode(data[:zipcode])
   end
 
-  def name
-    "#{@first_name} #{@last_name}"
+  def self.headers
+    ["regdate", "first_name", "last_name", "email_address", "homephone", "street", "city", "state", "zipcode"]
   end
 
-  def ==(rhs)
-    regdate == rhs.regdate
-    first_name == rhs.first_name
-    last_name == rhs.last_name
-    email == rhs.email
-    phone_number == rhs.phone_number
-    address == rhs.address
-    city == rhs.city
-    state == rhs.state
-    zipcode == rhs.zipcode
+  def to_a
+    [regdate, first_name, last_name, email, phone_number, address, city, state, zipcode]
   end
+
+  # def ==(rhs)
+  #   regdate == rhs.regdate
+  #   first_name == rhs.first_name
+  #   last_name == rhs.last_name
+  #   email == rhs.email
+  #   phone_number == rhs.phone_number
+  #   address == rhs.address
+  #   city == rhs.city
+  #   state == rhs.state
+  #   zipcode == rhs.zipcode
+  # end
 end
