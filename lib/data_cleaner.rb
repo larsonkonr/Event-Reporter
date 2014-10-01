@@ -7,7 +7,7 @@ class DataCleaner
   def clean_phone_number(phone_number)
     phone_number.to_s.gsub!((/\D/), "")
     if bad_phone_number?(phone_number)
-      nil
+      ""
     elsif correct_prefix?(phone_number)
       phone_number[1..11]
     else

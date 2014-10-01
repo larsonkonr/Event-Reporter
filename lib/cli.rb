@@ -75,7 +75,7 @@ class CLI
   end
 
   def queue_save_file
-    @repository = EntryRepository.save_entries(results[3], queue)
+    EntryRepository.save_entries(results[3], queue)
   end
 
   def find?
@@ -111,6 +111,7 @@ class CLI
   def find(attribute, criteria)
     queue.clear
     search_results = repository.find_by(attribute, criteria)
+
     queue.add(search_results)
   end
 
