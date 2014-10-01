@@ -35,10 +35,6 @@ class EntryRepository
     @entries = entries
   end
 
-  # def ==(rhs)
-  #   entries == rhs.entries
-  # end
-
   def find_by(attribute, criteria)
     criteria = criteria.downcase
     entries.select { |entry|
