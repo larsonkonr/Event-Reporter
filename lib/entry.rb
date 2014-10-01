@@ -18,9 +18,9 @@ class Entry
     @last_name      = cleaner.clean_name(data[:last_name])
     @email          = data[:email_address]
     @phone_number   = cleaner.clean_phone_number(data[:homephone])
-    @address        = data[:street]
+    @address        = cleaner.clean_address(data[:street])
     @city           = cleaner.clean_city(data[:city])
-    @state          = data[:state]
+    @state          = cleaner.clean_state(data[:state])
     @zipcode        = cleaner.clean_zipcode(data[:zipcode])
   end
 

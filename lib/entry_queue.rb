@@ -15,14 +15,14 @@ class EntryQueue
 
   def print_queue
     queue.each do |entry|
-      print "#{entry.first_name} "
-      print "#{entry.last_name} "
-      print "#{entry.email} "
-      print "#{entry.phone_number} "
-      print "#{entry.address} "
-      print "#{entry.city} "
-      print "#{entry.state} "
-      print "#{entry.zipcode} \n"
+      printf("%-18s", "#{entry.first_name.capitalize}")
+      printf("%-18s", "#{entry.last_name.capitalize} ") # longest last_name length: 20
+      printf("%-40s", "#{entry.email} ")  # longest email length: 45
+      printf("%-15s", "#{entry.phone_number}") # all same length - 10
+      printf("%-40s", "#{entry.address}") # longest address length: 73
+      printf("%-25s", "#{entry.city}") # longest city length: 26
+      printf("%-3s", "#{entry.state}")
+      printf("%-6s", "#{entry.zipcode}\n")
     end
   end
 

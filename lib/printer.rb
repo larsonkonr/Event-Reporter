@@ -14,6 +14,10 @@ class Printer
     puts "#{count}"
   end
 
+  def queue_print
+
+  end
+
   def quit
     puts "Goodbye"
   end

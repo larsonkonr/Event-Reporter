@@ -1,7 +1,7 @@
 class DataCleaner
 
   def clean_zipcode(zipcode)
-    zipcode.to_s.rjust(5, "0")[0..4]
+    zipcode.to_s.rjust(5, " ")[0..4]
   end
 
   def clean_phone_number(phone_number)
@@ -45,6 +45,14 @@ class DataCleaner
 
   def clean_city(city)
     city.to_s.downcase
+  end
+
+  def clean_address(address)
+    address.to_s
+  end
+
+  def clean_state(state)
+    state.to_s
   end
 
   # contents.each do |row|
