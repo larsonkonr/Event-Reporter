@@ -21,6 +21,16 @@ class EntryRepository
     new(rows)
   end
 
+  # def self.save_entries(filename)
+  #   path = "./data/#{filename}"
+  #   File.open(path, 'wb') do |row|
+  #     row.puts "some stuff"
+  #     # queue.each do |row|
+  #     #   filename << row
+  #     # end
+  #   end
+  # end
+
   def initialize(entries)
     @entries = entries
   end

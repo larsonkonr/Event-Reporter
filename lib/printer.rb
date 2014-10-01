@@ -2,7 +2,6 @@ class Printer
 
   def welcome
     puts "EventReporter Initialized!"
-    puts "Enter your command:"
   end
 
   def help
@@ -16,6 +15,14 @@ class Printer
 
   def queue_print
 
+  end
+
+  def goodbye
+    puts "Goodbye."
+  end
+
+  def prompt
+    puts "Enter your command:"
   end
 
   def quit

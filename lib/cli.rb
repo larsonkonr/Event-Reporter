@@ -12,18 +12,21 @@ class CLI
   def start
     printer.welcome
     until quit?
+      printer.prompt
       input.get_input
-      process_initial_commands
+      process_commands
+      printer.goodbye if quit?
     end
   end
 
-  def process_initial_commands
+  def process_commands
     @results = input.parse
     case
     when load? then load_file
     when help? then printer.help
     when queue_command? then process_queue_command
     when find? then find(attribute, criteria)
+    #when save? then save_file
     end
   end
 
@@ -46,6 +49,14 @@ class CLI
   def load_other_file
     @repository = EntryRepository.load_entries(results[1])
   end
+
+  # def save?
+  #   results[1] == "save"
+  # end
+  #
+  # def save_file
+  #   @repository = EntryRepository.save_entries(results[3])
+  # end
 
   def help?
     results[0] == "help" && one_word?
