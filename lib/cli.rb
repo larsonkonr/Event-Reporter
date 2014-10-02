@@ -24,10 +24,14 @@ class CLI
     @results = input.parse
     case
     when load? then load_file
-    when help? then printer.help
+    when help? then process_help_command
     when queue_command? then process_queue_command
     when find? then find(attribute, criteria)
     end
+  end
+
+  def load_file
+    load_default_file? ? load_default_file : load_other_file
   end
 
   def load_default_file?
@@ -36,10 +40,6 @@ class CLI
 
   def load?
     results[0] == "load"
-  end
-
-  def load_file
-    load_default_file? ? load_default_file : load_other_file
   end
 
   def load_default_file
@@ -51,31 +51,52 @@ class CLI
   end
 
   def help?
+    results[0] == "help"
+  end
+
+  def just_help?
     results[0] == "help" && one_word?
   end
 
-  def queue_save?
-    results[1] == "save"
+  def process_help_command
+    case
+    when just_help? then printer.help
+    when help_load? then printer.help_load
+    when help_queue_count? then printer.help_queue_count
+    when help_queue_clear? then printer.help_queue_clear
+    when help_queue_print? then printer.help_queue_print
+    when help_queue_print_by? then printer.help_queue_print_by
+    when help_queue_save? then printer.help_queue_save
+    when help_find? then printer.help_find
+    end
   end
 
-  def queue_count?
-    queue_command? && results[1] == "count"
+  def help_load?
+    help? && results[1] == "load"
   end
 
-  def queue_print?
-    queue_command? && results[1] == "print" && results.count == 2
+  def help_queue_count?
+    help? && results[1] == "queue" && results[2] == "count"
   end
 
-  def queue_print_by?
-    queue_command? && results[2] == "by"
+  def help_queue_clear?
+    help? && results[1] == "queue" && results[2] == "clear"
   end
 
-  def queue_clear?
-    queue_command? && results[1] == "clear"
+  def help_queue_print?
+    help? && results[1] == "queue" && results[2] == "print"
   end
 
-  def queue_save_file
-    EntryRepository.save_entries(results[3], queue)
+  def help_queue_print_by?
+    help? && results[1..3].join(" ") == "queue print by"
+  end
+
+  def help_queue_save?
+    help? && results[1] == "queue" && results[2] == "save"
+  end
+
+  def help_find?
+    help? && results[1] == "find"
   end
 
   def find?
@@ -106,6 +127,30 @@ class CLI
     when queue_clear? then queue.clear
     when queue_save? then queue_save_file
     end
+  end
+
+  def queue_save?
+    results[1] == "save"
+  end
+
+  def queue_count?
+    queue_command? && results[1] == "count"
+  end
+
+  def queue_print?
+    queue_command? && results[1] == "print" && results.count == 2
+  end
+
+  def queue_print_by?
+    queue_command? && results[2] == "by"
+  end
+
+  def queue_clear?
+    queue_command? && results[1] == "clear"
+  end
+
+  def queue_save_file
+    EntryRepository.save_entries(results[3], queue)
   end
 
   def find(attribute, criteria)

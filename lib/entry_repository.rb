@@ -1,5 +1,3 @@
-require 'csv'
-
 class EntryRepository
 
   attr_reader :entries
