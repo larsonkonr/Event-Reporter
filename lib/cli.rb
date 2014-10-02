@@ -1,12 +1,13 @@
 require "csv"
+
 class CLI
   attr_reader :input, :queue, :repository, :printer, :results
 
   def initialize(stdout)
     @stdout = stdout
     @input = InputParser.new
-    @queue = EntryQueue.new
-    @repository = EntryRepository.new
+    @queue = AttendeeQueue.new
+    @repository = AttendeeRepository.new
     @printer = Printer.new
   end
 
@@ -48,11 +49,11 @@ class CLI
   end
 
   def load_default_file
-    @repository = EntryRepository.load_entries("./data")
+    @repository = AttendeeRepository.load_attendees("./data")
   end
 
   def load_other_file
-    @repository = EntryRepository.load_entries(results[1])
+    @repository = AttendeeRepository.load_attendees(results[1])
   end
 
   def help?

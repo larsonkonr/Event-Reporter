@@ -1,4 +1,4 @@
-class EntryQueue
+class AttendeeQueue
   attr_reader :queue, :counter, :input, :printer
 
   def initialize
@@ -35,31 +35,31 @@ class EntryQueue
       printf("%-25s", "CITY")
       printf("%-8s", "STATE")
       printf("%-5s", "ZIPCODE\n")
-    queue.each do |entry|
-      printf("%-18s", "#{entry.first_name.capitalize}")
-      printf("%-18s", "#{entry.last_name.capitalize} ")
-      printf("%-40s", "#{entry.email} ")
-      printf("%-15s", "#{entry.phone_number}")
-      printf("%-40s", "#{entry.address.split.map(&:capitalize)*' '}")
-      printf("%-25s", "#{entry.city.split.map(&:capitalize)*' '}")
-      printf("%-8s", "#{entry.state.upcase}")
-      printf("%-5s", "#{entry.zipcode}\n")
+    queue.each do |attendee|
+      printf("%-18s", "#{attendee.first_name.capitalize}")
+      printf("%-18s", "#{attendee.last_name.capitalize} ")
+      printf("%-40s", "#{attendee.email} ")
+      printf("%-15s", "#{attendee.phone_number}")
+      printf("%-40s", "#{attendee.address.split.map(&:capitalize)*' '}")
+      printf("%-25s", "#{attendee.city.split.map(&:capitalize)*' '}")
+      printf("%-8s", "#{attendee.state.upcase}")
+      printf("%-5s", "#{attendee.zipcode}\n")
     end
   end
 
   def print_by(attribute)
-    queue.sort_by! do |entry|
-      entry.send(attribute.to_sym)
+    queue.sort_by! do |attendee|
+      attendee.send(attribute.to_sym)
     end
     print_queue
   end
 
-  def add(entries)
-    @queue += entries
+  def add(attendees)
+    @queue += attendees
   end
 
   def save_file
-    EntryRepository.save_entries(input[3], queue)
+    AttendeeRepository.save_attendees(input[3], queue)
   end
 
   def count?
