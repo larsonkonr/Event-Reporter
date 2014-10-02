@@ -1,10 +1,10 @@
 require_relative 'test_helper'
 
-class EntryQueueTest < Minitest::Test
-  attr_reader :queue, :entries
+class AttendeeQueueTest < Minitest::Test
+  attr_reader :queue, :attendees
 
   def setup
-    @entries = [ { regdate: "09/28/2014 03:05",
+    @attendees = [ { regdate: "09/28/2014 03:05",
                    first_name: "Steve",
                    last_name: "Alice",
                    email_address: "steve@jumpstartlabs.com",
@@ -22,7 +22,7 @@ class EntryQueueTest < Minitest::Test
                    city: "Denver",
                    state: "CO",
                    zipcode: "80203" } ]
-    @queue = EntryQueue.new
+    @queue = AttendeeQueue.new
   end
 
   def test_queue_starts_out_empty
@@ -30,12 +30,12 @@ class EntryQueueTest < Minitest::Test
   end
 
   def test_can_add_to_queue
-    queue.add(entries)
+    queue.add(attendees)
     assert_equal 2, queue.count
   end
 
   def test_can_clear_queue
-    queue.add(entries)
+    queue.add(attendees)
     queue.clear
     assert_equal 0, queue.count
   end

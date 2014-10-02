@@ -1,7 +1,7 @@
 require_relative 'test_helper'
 
-class EntryTest < Minitest::Test
-  attr_reader :entry
+class AttendeeTest < Minitest::Test
+  attr_reader :attendee
 
   def setup
     data = { regdate: "09/28/2014 03:05",
@@ -13,42 +13,42 @@ class EntryTest < Minitest::Test
              city: "Denver",
              state: "CO",
              zipcode: "80203" }
-    @entry = Entry.new(data)
+    @attendee = Attendee.new(data)
   end
 
   def test_regdate
-    assert_equal "09/28/2014 03:05", entry.regdate
+    assert_equal "09/28/2014 03:05", attendee.regdate
   end
 
   def test_first_name
-    assert_equal "alice", entry.first_name
+    assert_equal "alice", attendee.first_name
   end
 
   def test_last_name
-    assert_equal "steve", entry.last_name
+    assert_equal "steve", attendee.last_name
   end
 
   def test_email
-    assert_equal "kate@jumpstartlabs.com", entry.email
+    assert_equal "kate@jumpstartlabs.com", attendee.email
   end
 
   def test_phone_number
-    assert_equal "1111111111", entry.phone_number
+    assert_equal "1111111111", attendee.phone_number
   end
 
   def test_address
-    assert_equal "123 some st", entry.address
+    assert_equal "123 some st", attendee.address
   end
 
   def test_city
-    assert_equal "denver", entry.city
+    assert_equal "denver", attendee.city
   end
 
   def test_state
-    assert_equal "co", entry.state
+    assert_equal "co", attendee.state
   end
 
   def test_zipcode
-    assert_equal "80203", entry.zipcode
+    assert_equal "80203", attendee.zipcode
   end
 end

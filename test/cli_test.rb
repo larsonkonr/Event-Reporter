@@ -7,7 +7,7 @@ class CLITest < Minitest::Test
     fake_stdout = StringIO.new
     @cli = CLI.new(fake_stdout)
     @input = InputParser.new
-    @repository = EntryRepository.load_entries("./test/fixtures/small_event_attendees.csv")
+    @repository = AttendeeRepository.load_attendees("./test/fixtures/small_event_attendees.csv")
   end
 
   def test_lookup_first_name
