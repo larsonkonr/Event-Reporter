@@ -24,10 +24,15 @@ class CLI
     @results = input.parse
     case
     when load? then load_file
-    when help? then process_help_command
+    when help? then process_help_command(results)
     when queue_command? then process_queue_command
     when find? then find(attribute, criteria)
     end
+  end
+
+  def process_help_command(results)
+    helper = Help.new(results)
+    helper.get_help
   end
 
   def load_file
@@ -52,51 +57,6 @@ class CLI
 
   def help?
     results[0] == "help"
-  end
-
-  def just_help?
-    results[0] == "help" && one_word?
-  end
-
-  def process_help_command
-    case
-    when just_help? then printer.help
-    when help_load? then printer.help_load
-    when help_queue_count? then printer.help_queue_count
-    when help_queue_clear? then printer.help_queue_clear
-    when help_queue_print? then printer.help_queue_print
-    when help_queue_print_by? then printer.help_queue_print_by
-    when help_queue_save? then printer.help_queue_save
-    when help_find? then printer.help_find
-    end
-  end
-
-  def help_load?
-    help? && results[1] == "load"
-  end
-
-  def help_queue_count?
-    help? && results[1] == "queue" && results[2] == "count"
-  end
-
-  def help_queue_clear?
-    help? && results[1] == "queue" && results[2] == "clear"
-  end
-
-  def help_queue_print?
-    help? && results[1] == "queue" && results[2] == "print"
-  end
-
-  def help_queue_print_by?
-    help? && results[1..3].join(" ") == "queue print by"
-  end
-
-  def help_queue_save?
-    help? && results[1] == "queue" && results[2] == "save"
-  end
-
-  def help_find?
-    help? && results[1] == "find"
   end
 
   def find?

@@ -12,12 +12,12 @@ class Printer
 
   def help_load
     puts "load:"
-    puts 'Will load the default file if not specified ie:"load file.csv"'
+    puts 'Will load the default file if not specified ie: "load file.csv"'
   end
 
   def help_queue_count
     puts "queue count:"
-    puts "Will count the queue from the last search you preformed"
+    puts "Will count the queue from the last search you performed"
   end
 
   def help_queue_clear
@@ -27,12 +27,12 @@ class Printer
 
   def help_queue_print
     puts "queue print:"
-    puts "Will display the last search you preformed"
+    puts "Will display the last search you performed"
   end
 
   def help_queue_print_by
     puts "queue print by <attribute>:"
-    puts 'Will display the last search you preformed by the attribute you attach ie:"queue print by state"'
+    puts 'Will display the last search you performed by the attribute you attach ie:"queue print by state"'
   end
 
   def help_queue_save
