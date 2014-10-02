@@ -42,11 +42,6 @@ class CLITest < Minitest::Test
     assert cli.respond_to?(:quit?)
   end
 
-  # TO DO - move to input test
-  # def test_command_starts_out_empty
-  #   assert_equal "", cli.input.command
-  # end
-
   # TO DO - possibly delete, possibly re-write.
   # def test_load
   #   input.stub :command, "load" do
