@@ -17,10 +17,6 @@ class EntryTest < Minitest::Test
     @entry = Entry.new(data)
   end
 
-  def test_name
-    assert_equal "alice steve", entry.name
-  end
-
   def test_regdate
     assert_equal "09/28/2014 03:05", entry.regdate
   end
@@ -42,15 +38,15 @@ class EntryTest < Minitest::Test
   end
 
   def test_address
-    assert_equal "123 Some St", entry.address
+    assert_equal "123 some st", entry.address
   end
 
   def test_city
-    assert_equal "Denver", entry.city
+    assert_equal "denver", entry.city
   end
 
   def test_state
-    assert_equal "CO", entry.state
+    assert_equal "co", entry.state
   end
 
   def test_zipcode
