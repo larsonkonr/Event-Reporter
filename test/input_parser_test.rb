@@ -10,4 +10,10 @@ class InputParserTest < Minitest::Test
   def test_it_starts_with_an_empty_command
     assert_equal "", input_parser.command
   end
+
+  def test_parse_splits_command
+    input_parser.command = 'foo bar'
+    result = input_parser.parse
+    assert_equal ['foo', 'bar'], result
+  end
 end

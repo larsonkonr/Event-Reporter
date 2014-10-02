@@ -41,12 +41,4 @@ class CLITest < Minitest::Test
   def test_can_quit
     assert cli.respond_to?(:quit?)
   end
-
-  # TO DO - possibly delete, possibly re-write.
-  # def test_load
-  #   input.stub :command, "load" do
-  #     cli.process_initial_commands
-  #     assert_equal EntryRepository.load_entries("./test/fixtures"), cli.repository
-  #   end
-  # end
 end

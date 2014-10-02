@@ -1,12 +1,16 @@
 class InputParser
-  attr_reader :command
-  
+  attr_accessor :command
+
   def initialize
     @command = ""
   end
 
   def get_input
-    @command = gets.strip.downcase
+    @command = get_command.strip.downcase
+  end
+
+  def get_command
+    gets
   end
 
   def parse

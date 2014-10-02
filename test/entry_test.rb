@@ -13,7 +13,6 @@ class EntryTest < Minitest::Test
              city: "Denver",
              state: "CO",
              zipcode: "80203" }
-
     @entry = Entry.new(data)
   end
 
@@ -52,8 +51,4 @@ class EntryTest < Minitest::Test
   def test_zipcode
     assert_equal "80203", entry.zipcode
   end
-
-  # def test_comparison
-  #   assert_equal
-  # end
 end

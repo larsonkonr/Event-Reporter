@@ -2,6 +2,7 @@ require_relative 'test_helper'
 
 class DataCleanerTest < Minitest::Test
   attr_reader :cleaner
+
   def setup
     @cleaner = DataCleaner.new
   end
@@ -29,7 +30,6 @@ class DataCleanerTest < Minitest::Test
     phone1 = "3051112222"
     phone2 = "(203)232-1111"
     phone3 = "230-113-1111"
-
     assert_equal phone1, cleaner.clean_phone_number(phone1)
     assert_equal "2032321111", cleaner.clean_phone_number(phone2)
     assert_equal "2301131111", cleaner.clean_phone_number(phone3)
@@ -43,14 +43,12 @@ class DataCleanerTest < Minitest::Test
   def test_it_downcases_names
     first_name = "VIki"
     last_name = "HARROD"
-
     assert_equal "viki", cleaner.clean_name(first_name)
     assert_equal "harrod", cleaner.clean_name(last_name)
   end
 
   def test_it_downcases_cities
     city = "METROpolis"
-
     assert_equal "metropolis", cleaner.clean_city(city)
   end
 

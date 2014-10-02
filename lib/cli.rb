@@ -156,7 +156,6 @@ class CLI
   def find(attribute, criteria)
     queue.clear
     search_results = repository.find_by(attribute, criteria)
-
     queue.add(search_results)
   end
 

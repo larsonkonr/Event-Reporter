@@ -1,8 +1,9 @@
 class EntryQueue
-  attr_reader :queue
+  attr_reader :queue, :counter
 
   def initialize
     @queue = []
+    @counter = 0
   end
 
   def count
@@ -14,6 +15,7 @@ class EntryQueue
   end
 
   def print_queue
+      puts "#{count} attendees loaded"
       printf("%-18s", "FIRST NAME")
       printf("%-18s", "LAST NAME") # longest last_name length: 20
       printf("%-40s", "EMAIL")  # longest email length: 45
@@ -22,7 +24,7 @@ class EntryQueue
       printf("%-25s", "CITY") # longest city length: 26
       printf("%-8s", "STATE")
       printf("%-5s", "ZIPCODE\n")
-
+    if counter < count 
     queue.each do |entry|
       printf("%-18s", "#{entry.first_name.capitalize}")
       printf("%-18s", "#{entry.last_name.capitalize} ") # longest last_name length: 20
@@ -32,7 +34,9 @@ class EntryQueue
       printf("%-25s", "#{entry.city.split.map(&:capitalize)*' '}") # longest city length: 26
       printf("%-8s", "#{entry.state.upcase}")
       printf("%-5s", "#{entry.zipcode}\n")
+      @counter + 1
     end
+  end
   end
 
   def print_by(attribute)

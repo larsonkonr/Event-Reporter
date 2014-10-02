@@ -1,7 +1,8 @@
+require "colorize"
 class Printer
 
   def welcome
-    puts "EventReporter Initialized!"
+    puts "EventReporter Initialized!".blue
   end
 
   def help
@@ -46,10 +47,6 @@ class Printer
 
   def queue_count(count)
     puts "#{count}"
-  end
-
-  def queue_print
-
   end
 
   def goodbye
