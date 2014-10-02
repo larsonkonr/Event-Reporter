@@ -1,11 +1,11 @@
-class EntryRepository
-  attr_reader :entries
+class AttendeeRepository
+  attr_reader :attendees
 
-  def initialize(entries=[])
-    @entries = entries
+  def initialize(attendees=[])
+    @attendees = attendees
   end
 
-  def self.load_entries(path)
+  def self.load_attendees(path)
     default_file = "event_attendees.csv"
     if File.directory?(path)
       path = File.join(path, default_file)
@@ -18,24 +18,24 @@ class EntryRepository
     raise "File not found" unless File.exist?(path)
 
     contents = CSV.open path, headers: true, header_converters: :symbol
-    rows = contents.collect { |row| Entry.new(row) }
+    rows = contents.collect { |row| Attendee.new(row) }
     new(rows)
   end
 
-  def self.save_entries(filename, queue)
+  def self.save_attendees(filename, queue)
     path = "./data/#{filename}"
     CSV.open(path, 'w') do |csvfile|
-      csvfile << Entry.headers
-      queue.each do |entry|
-        csvfile << entry.to_a
+      csvfile << Attendee.headers
+      queue.each do |attendee|
+        csvfile << attendee.to_a
       end
     end
   end
 
   def find_by(attribute, criteria)
     criteria = criteria.downcase
-    entries.select { |entry|
-      entry.send(attribute.to_sym).downcase == criteria
+    attendees.select { |attendee|
+      attendee.send(attribute.to_sym).downcase == criteria
     }
   end
 

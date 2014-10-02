@@ -1,13 +1,13 @@
 require "colorize"
-
 class Printer
+
   def welcome
     puts "EventReporter Initialized!".yellow
   end
 
   def help
-    puts "Available commands:"
-    puts "load\nqueue count\nqueue clear\nqueue print\nqueue print by <attribute>\nqueue save to <filename.csv>\nfind <attribute> <criteria>"
+    puts "Available commands:".green
+    puts "load\nqueue count\nqueue clear\nqueue print\nqueue print by <attribute>\nqueue save to <filename.csv>\nfind <attribute> <criteria>".green
   end
 
   def help_load

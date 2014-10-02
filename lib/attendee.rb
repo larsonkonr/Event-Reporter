@@ -1,6 +1,6 @@
 require_relative 'data_cleaner'
 
-class Entry
+class Attendee
   attr_reader :regdate,
               :first_name,
               :last_name,

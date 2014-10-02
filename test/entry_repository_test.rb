@@ -2,7 +2,6 @@ require_relative 'test_helper'
 
 class EntryRepositoryTest < Minitest::Test
   attr_reader :entries, :repository
-  
   def setup
     @entries = [
       { first_name: 'Alice', last_name: 'Smith', homephone: '111.111.1111' },
