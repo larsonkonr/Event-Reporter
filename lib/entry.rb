@@ -1,4 +1,5 @@
 require_relative 'data_cleaner'
+
 class Entry
   attr_reader :regdate,
               :first_name,

@@ -1,8 +1,8 @@
 require "colorize"
-class Printer
 
+class Printer
   def welcome
-    puts "EventReporter Initialized!".blue
+    puts "EventReporter Initialized!".yellow
   end
 
   def help
@@ -11,38 +11,38 @@ class Printer
   end
 
   def help_load
-    puts "load:"
-    puts 'Will load the default file if not specified ie: "load file.csv"'
+    puts "load:".green
+    puts 'Will load the default file if not specified ie: "load file.csv"'.green
   end
 
   def help_queue_count
-    puts "queue count:"
-    puts "Will count the queue from the last search you performed"
+    puts "queue count:".green
+    puts "Will count the queue from the last search you performed".green
   end
 
   def help_queue_clear
-    puts "queue clear:"
-    puts "Will clear all attendees from the queue. So will searching for another criteria"
+    puts "queue clear:".green
+    puts "Will clear all attendees from the queue. So will searching for another criteria".green
   end
 
   def help_queue_print
-    puts "queue print:"
-    puts "Will display the last search you performed"
+    puts "queue print:".green
+    puts "Will display the last search you performed".green
   end
 
   def help_queue_print_by
-    puts "queue print by <attribute>:"
-    puts 'Will display the last search you performed by the attribute you attach ie:"queue print by state"'
+    puts "queue print by <attribute>:".green
+    puts 'Will display the last search you performed by the attribute you attach ie:"queue print by state"'.green
   end
 
   def help_queue_save
-    puts "queue save to:"
-    puts 'Will save the data from your last search to the file of your choosing ie:"queue save to file.csv"'
+    puts "queue save to:".green
+    puts 'Will save the data from your last search to the file of your choosing ie:"queue save to file.csv"'.green
   end
 
   def help_find
-    puts "find <attribute> <criteria>:"
-    puts 'Will allow you to enter the attribute "last_name" and criteria "johnston" to find and put in to you queue for viewing'
+    puts "find <attribute> <criteria>:".green
+    puts 'Will allow you to enter the attribute "last_name" and criteria "johnston" to find and put in to you queue for viewing'.green
   end
 
   def queue_count(count)
@@ -50,14 +50,10 @@ class Printer
   end
 
   def goodbye
-    puts "Goodbye."
+    puts "Goodbye.".blue
   end
 
   def prompt
     puts "Enter your command:"
-  end
-
-  def quit
-    puts "Goodbye"
   end
 end

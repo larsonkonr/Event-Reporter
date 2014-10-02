@@ -1,4 +1,5 @@
 require "csv"
+
 class CLI
   attr_reader :input, :queue, :repository, :printer, :results
 
