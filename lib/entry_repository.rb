@@ -1,6 +1,9 @@
 class EntryRepository
-
   attr_reader :entries
+
+  def initialize(entries=[])
+    @entries = entries
+  end
 
   def self.load_entries(path)
     default_file = "event_attendees.csv"
@@ -23,14 +26,10 @@ class EntryRepository
     path = "./data/#{filename}"
     CSV.open(path, 'w') do |csvfile|
       csvfile << Entry.headers
-      queue.queue.each do |entry|
+      queue.each do |entry|
         csvfile << entry.to_a
       end
     end
-  end
-
-  def initialize(entries)
-    @entries = entries
   end
 
   def find_by(attribute, criteria)

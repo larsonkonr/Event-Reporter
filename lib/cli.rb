@@ -6,7 +6,7 @@ class CLI
     @stdout = stdout
     @input = InputParser.new
     @queue = EntryQueue.new
-    @repository = EntryRepository.new([])
+    @repository = EntryRepository.new
     @printer = Printer.new
   end
 
@@ -25,7 +25,7 @@ class CLI
     case
     when load? then load_file
     when help? then process_help_command(results)
-    when queue_command? then process_queue_command
+    when queue_command? then queue.process_command(results, printer)
     when find? then find(attribute, criteria)
     end
   end
@@ -40,7 +40,7 @@ class CLI
   end
 
   def load_default_file?
-    load? && one_word?
+    load? && results.count == 1
   end
 
   def load?
@@ -71,46 +71,8 @@ class CLI
     results[2..-1].join(" ")
   end
 
-  def one_word?
-    results.count == 1
-  end
-
   def queue_command?
     results[0] == "queue"
-  end
-
-  def process_queue_command
-    case
-    when queue_count? then printer.queue_count(queue.count)
-    when queue_print? then queue.print_queue
-    when queue_print_by? then queue.print_by(results[3])
-    when queue_clear? then queue.clear
-    when queue_save? then queue_save_file
-    end
-  end
-
-  def queue_save?
-    results[1] == "save"
-  end
-
-  def queue_count?
-    queue_command? && results[1] == "count"
-  end
-
-  def queue_print?
-    queue_command? && results[1] == "print" && results.count == 2
-  end
-
-  def queue_print_by?
-    queue_command? && results[2] == "by"
-  end
-
-  def queue_clear?
-    queue_command? && results[1] == "clear"
-  end
-
-  def queue_save_file
-    EntryRepository.save_entries(results[3], queue)
   end
 
   def find(attribute, criteria)
