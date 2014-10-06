@@ -2,7 +2,7 @@ require "colorize"
 class Printer
 
   def welcome
-    puts "EventReporter Initialized!".yellow
+    puts "EventReporter Initialized!"
   end
 
   def help
